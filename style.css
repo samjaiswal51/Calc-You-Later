@@ -32,6 +32,7 @@ body{
 input{
     width: 320px;
     border: none;
+    border-radius: 10px;
     padding: 24px;
     margin: 10px;
     background: transparent;
@@ -39,6 +40,7 @@ input{
     font-size: 40px;
     text-align: right;
     cursor: pointer;
+    color: white;
 }
 
 input::placeholder{
@@ -88,4 +90,39 @@ button:hover{
 .ac:hover{
     color: #1B5243;
     background-color: white;
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+button.clicked {
+    animation: bounce 0.2s ease;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 5px #4B7F52; }
+    100% { box-shadow: 0 0 15px #4B7F52; }
+}
+
+input.pulse {
+    animation: pulse 0.3s ease-out;
 }

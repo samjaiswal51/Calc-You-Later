@@ -1,30 +1,36 @@
-let input = document.getElementById('inputbox');
-let buttons = document.querySelectorAll('button');
+const input = document.getElementById("inputbox");
+const buttons = document.querySelectorAll("button");
 
-let string = "";
-let arr = Array.from(buttons);
+let expression = "";
 
-arr.forEach(button => {
-    button.addEventListener('click', (e) => {
-        let value = e.target.innerText;
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const value = button.innerText;
 
-        if (value === '=') {
-            try {
-                string = eval(string);
-                input.value = string;
-            } catch {
-                input.value = "Error";
-                string = "";
-            }
-        } else if (value === 'AC') {
-            string = "";
-            input.value = "";
-        } else if (value === 'DEL') {
-            string = string.slice(0, -1);
-            input.value = string;
-        } else {
-            string += value;
-            input.value = string;
-        }
-    });
+    button.classList.add("clicked");
+    setTimeout(() => button.classList.remove("clicked"), 150);
+
+    if (value === "AC") {
+      expression = "";
+      input.value = "";
+    } else if (value === "DEL") {
+      expression = expression.slice(0, -1);
+      input.value = expression;
+    } else if (value === "=") {
+      try {
+        expression = eval(expression).toString();
+        input.value = expression;
+        input.classList.add("pulse");
+        setTimeout(() => input.classList.remove("pulse"), 200);
+      } catch {
+        input.value = "Error";
+        expression = "";
+      }
+    } else {
+      expression += value;
+      input.value = expression;
+      input.classList.add("pulse");
+      setTimeout(() => input.classList.remove("pulse"), 200);
+    }
+  });
 });
